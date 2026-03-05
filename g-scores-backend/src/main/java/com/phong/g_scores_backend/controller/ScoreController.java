@@ -2,6 +2,7 @@ package com.phong.g_scores_backend.controller;
 
 import com.phong.g_scores_backend.dto.ApiResponse;
 import com.phong.g_scores_backend.dto.ScoreStatisticsResponse;
+import com.phong.g_scores_backend.dto.TopStudentResponse;
 import com.phong.g_scores_backend.service.ScoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,15 @@ public class ScoreController {
                 .code(200)
                 .message("Success")
                 .data(scoreService.getScoreStatistics())
+                .build();
+    }
+
+    @GetMapping("/top-group-a")
+    public ApiResponse<List<TopStudentResponse>> getTopGroupA() {
+        return ApiResponse.<List<TopStudentResponse>>builder()
+                .code(200)
+                .message("Success")
+                .data(scoreService.getTopGroupA())
                 .build();
     }
 }

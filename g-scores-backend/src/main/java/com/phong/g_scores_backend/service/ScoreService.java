@@ -1,7 +1,9 @@
 package com.phong.g_scores_backend.service;
 
 import com.phong.g_scores_backend.dto.ScoreStatisticsResponse;
+import com.phong.g_scores_backend.dto.TopStudentResponse;
 import com.phong.g_scores_backend.entity.Subject;
+import com.phong.g_scores_backend.repository.StudentRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ScoreService {
+    private final StudentRepository studentRepository;
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -44,5 +48,17 @@ public class ScoreService {
         }
 
         return responses;
+    }
+
+    public List<TopStudentResponse> getTopGroupA() {
+        return studentRepository.findTopGroupA().stream()
+                .map(s -> TopStudentResponse.builder()
+                        .sbd(s.getSbd())
+                        .toan(s.getToan())
+                        .vatLi(s.getVatLi())
+                        .hoaHoc(s.getHoaHoc())
+                        .totalScore(s.getToan().add(s.getVatLi()).add(s.getHoaHoc()))
+                        .build())
+                .toList();
     }
 }
