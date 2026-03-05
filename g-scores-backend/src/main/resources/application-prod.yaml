@@ -18,4 +18,4 @@ spring:
     show-sql: false
 app:
   cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+    allowed-origin: ${CORS_ALLOWED_ORIGIN}
