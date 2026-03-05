@@ -16,3 +16,6 @@ spring:
           order_inserts: true
           order_updates: true
     show-sql: false
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
