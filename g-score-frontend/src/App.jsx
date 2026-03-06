@@ -1,35 +1,54 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import ScoreLookup from "./components/ScoreLookup";
+import Statistics from "./components/Statistics";
+import TopStudents from "./components/TopStudents";
 
-function App() {
-  const [count, setCount] = useState(0);
+const TABS = [
+  { id: "lookup", label: "Tra cứu điểm" },
+  { id: "statistics", label: "Thống kê" },
+  { id: "top", label: "Top 10 Khối A" },
+];
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState("lookup");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 py-4">
+          <h1 className="text-2xl font-bold text-gray-800">G-Scores</h1>
+          <p className="text-sm text-gray-500">Điểm thi THPT Quốc gia 2024</p>
+        </div>
+      </header>
+
+      {/* Tabs */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="flex gap-1">
+            {TABS.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                  activeTab === tab.id
+                    ? "border-blue-600 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+      {/* Content */}
+      <main className="max-w-4xl mx-auto px-4 py-6">
+        {activeTab === "lookup" && <ScoreLookup />}
+        {activeTab === "statistics" && <Statistics />}
+        {activeTab === "top" && <TopStudents />}
+      </main>
+    </div>
   );
 }
-
-export default App;
