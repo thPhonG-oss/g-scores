@@ -4,7 +4,7 @@ A web application to look up 2024 National High School Exam (THPT) scores by reg
 
 ## Demo
 
-- **Frontend:** https://g-scores-frontend.vercel.app
+- **Frontend:** https://g-scores-nine.vercel.app/
 - **Backend API:** https://g-scores-production.up.railway.app
 - **Swagger UI:** https://g-scores-production.up.railway.app/swagger-ui/index.html
 
