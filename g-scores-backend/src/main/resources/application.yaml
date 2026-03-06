@@ -27,4 +27,4 @@ spring:
     locations: classpath:db/migration
 app:
   cors:
-    allowed-origin: ${CORS_ALLOWED_ORIGIN}
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:5173}
